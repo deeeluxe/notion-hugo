@@ -398,7 +398,7 @@ export class NotionToMarkdown {
       case "callout":
         const { id, has_children } = block;
         const callout_text = await this.richText(block.callout.rich_text);
-        if (!has_children) return md.callout(callout_text, block.callout.icon);
+        if (!has_children) return md.callout(callout_text, block.callout.icon as any);
 
         let callout_string = "";
 
@@ -418,7 +418,7 @@ export class NotionToMarkdown {
           callout_string += `${child.parent}\n\n`;
         });
 
-        return md.callout(callout_string.trim(), block.callout.icon);
+        return md.callout(callout_string.trim(), block.callout.icon as any);
       case "quote":
         const quote_text = await this.richText(block.quote.rich_text);
         if (!block.has_children) return md.quote(quote_text);
