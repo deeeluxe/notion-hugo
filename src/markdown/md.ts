@@ -160,7 +160,7 @@ function equationRichText(text: EquationRichTextItemResponse): string {
   return `\\(${text.equation.expression}\\)`;
 }
 
-async function mentionRichText(
+function mentionRichText(
   text: MentionRichTextItemResponse,
   notion: Client
 ): Promise<string> {
@@ -201,6 +201,9 @@ async function mentionRichText(
     case "database": {
       console.warn("[Warn] Database mention is not supported");
       return "";
+    }
+    default: {
+      return ""; // Add this default case to handle unexpected mention types
     }
   }
 }
